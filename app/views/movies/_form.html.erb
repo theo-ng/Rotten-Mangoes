@@ -11,7 +11,7 @@
   <% end %>
 <% end %>
 
-<%= form_for @movie do |f| %>
+<%= form_for @movie, html: { multipart: true } do |f| %>
   <div>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -29,8 +29,10 @@
     <%= f.number_field :runtime_in_minutes %>
   </div>
   <div>
+    <%= f.file_field :poster_image %>
+  <div>
     <%= f.label :poster_image_url %><br>
-    <%= f.text_field :poster_image_url %>
+    <%= f.text_field :remote_poster_image_url %>
   </div>
   <div>
     <%= f.label :description %><br>
