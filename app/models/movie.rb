@@ -1,6 +1,8 @@
 class Movie < ActiveRecord::Base
   has_many :reviews
   mount_uploader :poster_image, PosterImageUploader
+
+  scope :search, ->(search, duration) { where("title like ? or director like ?", "%#{search}%", "%#{search}%").where("runtime_in_minutes #{duration}") }
   
   validates :title,
     presence: true
@@ -26,11 +28,11 @@ class Movie < ActiveRecord::Base
     reviews.sum(:rating_out_of_ten)/reviews.size if reviews.size > 0
   end
 
-  def self.search(search, duration)
-      query = "%#{search}%"
-      duration = "runtime_in_minutes #{duration}"
-      @movies = Movie.where("title like ? or director like ?", query, query).where(duration)
-  end
+  # def self.search(search, duration)
+  #     query = "%#{search}%"
+  #     duration = "runtime_in_minutes #{duration}"
+  #     @movies = where("title like ? or director like ?", query, query).where(duration)
+  # end
 
   protected
 
