@@ -1,6 +1,13 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    if params[:search]
+      query = "%#{params[:search]}%"
+      duration = "runtime_in_minutes #{params[:duration]}"
+      @movies = Movie.where("title like ? or director like ?", query, query).where(duration)
+      redirect_to movies_path, notice: "Search returned no results" if @movies.empty?
+    else
+      @movies = Movie.all
+    end
   end
 
   def show
