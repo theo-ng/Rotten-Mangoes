@@ -16,7 +16,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to admin_users_path, notice: "#{@user.firstname} #{@user.lastname} created!"
+      redirect_to admin_users_path, notice: "#{@user.full_name} created!"
     else
       render :new
     end
@@ -29,10 +29,16 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      redirect_to admin_users_path, notice: "#{@user.firstname} #{@user.lastname} updated!"
+      redirect_to admin_users_path, notice: "#{@user.full_name} updated!"
     else
       render :edit
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to admin_users_path, notice: "User deleted"
   end
 
   protected
