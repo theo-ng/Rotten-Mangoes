@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :current_user
+  def sudo_user
+    @sudo_user ||= User.find(session[:admin_id]) if session[:admin_id]
+  end
+
+  helper_method :current_user, :sudo_user
   
 end

@@ -8,5 +8,8 @@
     <% else %>
       <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
     <% end %>
+    <% if sudo_user %>
+      <span><a href="/switch_account/<%= sudo_user.id %>"><%= sudo_user.full_name %></a></span>
+    <% end %>
   </small>
 </footer>
