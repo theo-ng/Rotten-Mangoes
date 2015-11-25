@@ -1,0 +1,23 @@
+<h1>Admin</h1>
+<%= link_to "Go back", movies_path %>
+<hr>
+
+<% @users.each do |user| %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Admin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= user.firstname + ' ' + user.lastname%></td>
+        <td><%= user.email %></td>
+        <td><%= user.admin %></td>
+      </tr>
+    </tbody>
+  </table>
+  <hr/>
+<% end %>
