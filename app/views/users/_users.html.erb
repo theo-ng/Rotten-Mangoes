@@ -1,0 +1,18 @@
+<%= link_to "Back to all movies", movies_path %><br/>
+<hr/>
+<h1>User Details</h1>
+<div>User name: <%= @user.full_name %></div>
+<div>Email: <%= @user.email %></div>
+
+<hr/>
+<h3>Reviews by <em><%= @user.full_name %></em></h3>
+<% @user.reviews.each do |review| %>
+  Movie: <%= link_to review.movie.title, movie_path(review.movie)%>
+  <p>Review: <%= review.text %></p>
+  <p>Rating: <%= review.rating_out_of_ten %>
+  <% if review.rating_out_of_ten %>
+  /10
+  <% end %>
+  </p>
+  <p><small>Reviewer- <%= review.user.full_name if review.user %></small></p>
+<% end %>
