@@ -3,4 +3,6 @@
 <hr>
 <%= link_to "Submit a movie!", new_movie_path %>
 <hr>
-<%= render 'movies' %>
+<% @movies.each do |movie| %>
+  <%= render partial: 'movies', locals: {movie: movie} %>
+<% end %>
