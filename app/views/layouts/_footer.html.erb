@@ -1,15 +1,15 @@
 <footer>
   <small>
     <% if current_user %>
-      Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>) 
+      Signed in as: <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>) 
       <% if current_user.admin %>
-        <%= link_to "Admin", admin_users_path %>
+        Switch back to: <%= link_to "Admin", admin_users_path %>
       <% end %>
     <% else %>
       <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
     <% end %>
     <% if sudo_user %>
-      <span><a href="/switch_account/<%= sudo_user.id %>"><%= sudo_user.full_name %></a></span>
+      <div>Switch back to: <a href="/switch_account/<%= sudo_user.id %>"><%= sudo_user.full_name %></a></div>Switch back to: 
     <% end %>
   </small>
 </footer>
