@@ -1,8 +1,10 @@
-<h1>Rotten Mangoes</h1>
-<%= render 'search' %>
-<hr>
-<%= link_to "Submit a movie!", new_movie_path %>
-<hr>
-<% @movies.each do |movie| %>
-  <%= render partial: 'movies', locals: {movie: movie} %>
-<% end %>
+<div class="container centered">
+  <h1>Rotten Mangoes</h1>
+  <%= render 'search' %>
+  <hr>
+  <%= link_to "Submit a movie!", new_movie_path %>
+  <hr>
+  <% @movies.each do |movie| %>
+    <%= render partial: 'movies', locals: {movie: movie} %>
+  <% end %>
+</div>
